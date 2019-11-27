@@ -24,14 +24,23 @@ namespace Generateur
         private static IDataView _testData;
 
         private static DateTime _datePrediction;
-        private static bool _includeDay;
+        private static bool _includeMonth;
+        private static bool _includeWeek = false;
+
 
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter a date for Prediction dd/MM/yyyy");
             _datePrediction = DateTime.ParseExact(Console.ReadLine(),"dd/MM/yyyy", null);
-            Console.WriteLine("Include day? Y/N");
-            _includeDay = Console.ReadLine() == "Y";
+            Console.WriteLine("Include month? Y/N");
+            _includeMonth = Console.ReadLine() == "Y";
+
+            if(_includeMonth)
+            {
+                             Console.WriteLine("Include week? Y/N");
+                                _includeWeek = Console.ReadLine() == "Y";
+            }
+
             _mlContext = new MLContext();
             Console.WriteLine("Loading Data set");
             var data = JsonToList();
@@ -41,12 +50,12 @@ namespace Generateur
             });
 
             _trainingDataView = _mlContext.Data.LoadFromEnumerable<ResultatJsonFormat>(data);
-            _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column1", 1, 49);
+         /*   _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column1", 1, 49);
             _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column2", 1, 49);
             _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column3", 1, 49);
             _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column4", 1, 49);
             _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column5", 1, 49);
-            _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column6", 1, 49);
+            _trainingDataView = _mlContext.Data.FilterRowsByColumn(_trainingDataView,"Column6", 1, 49);*/
             DataOperationsCatalog.TrainTestData dataSplit = _mlContext.Data.TrainTestSplit(_trainingDataView, 0.99);
             _trainData = dataSplit.TrainSet;
             _testData = dataSplit.TestSet;
@@ -191,9 +200,58 @@ namespace Generateur
 
                    switch (column)
                    {
-                       case ColumnEnum.Column1:
+                       case ColumnEnum.Column1:     
+                            if(!_includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column1"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            else if (!_includeWeek && _includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column1"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }else
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column1"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
 
-                           if (_includeDay)
+
+                            
+                           /* if(_includeMonth)
+                            {
+                                 trainingPipline.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "WeekString"));
+                                }else
+                                {
+                                    trainingPipline.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline.Append(_mlContext.Transforms.Concatenate("Features", "DayString"));
+                            }
+                         trainingPipline.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column1"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());*/
+                                 
+                       /*    if (_includeDay)
                            {
                                var trainingPipelineDay = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -205,12 +263,63 @@ namespace Generateur
                            } 
                            var trainingPipeline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", "DateString")
                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column1"))
-                               .Append(_mlContext.Regression.Trainers.FastTree());
-                           _trainedModel = trainingPipeline.Fit(_trainData);
-                           return _trainedModel;
+                               .Append(_mlContext.Regression.Trainers.FastTree());*/
+                          // _trainedModel = trainingPipline.Fit(_trainData);
+                          // return _trainedModel;
 
                        case ColumnEnum.Column2:
-                           if (_includeDay)
+
+                           if(!_includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column2"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            else if (!_includeWeek && _includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column2"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }else
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column2"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+
+                            /*var trainingPipline2 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
+                            if(_includeMonth)
+                            {
+                                 trainingPipline2.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline2//.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"));
+                                }else
+                                {
+                                    trainingPipline2.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline2.Append(_mlContext.Transforms.Concatenate("Feature", "DayString"));
+                            }
+                            trainingPipline2.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column2"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());
+                           _trainedModel = trainingPipline2.Fit(_trainData);
+                           return _trainedModel;
+                          /* if (_includeDay)
                            {
                                var trainingPipeline2Day = _mlContext.Transforms.Text.FeaturizeText("FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -225,10 +334,60 @@ namespace Generateur
                                .Append(_mlContext.Transforms.CopyColumns("Label", "Column2"))
                                .Append(_mlContext.Regression.Trainers.FastTree());
                            _trainedModel = trainingPipeline2.Fit(_trainData);
-                           return _trainedModel;
+                           return _trainedModel;*/
 
                        case ColumnEnum.Column3:
-                           if (_includeDay)
+                           if(!_includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column3"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            else if (!_includeWeek && _includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column3"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }else
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column3"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                                                       
+                        /*var trainingPipline3 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
+                            if(_includeMonth)
+                            {
+                                 trainingPipline3.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline3//.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"));
+                                }else
+                                {
+                                    trainingPipline3.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline3.Append(_mlContext.Transforms.Concatenate("Feature", "DayString"));
+                            }
+                            trainingPipline3.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column3"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());
+                           _trainedModel = trainingPipline3.Fit(_trainData);
+                           return _trainedModel;
+                         /*  if (_includeDay)
                            {
                                var trainingPipeline3Day = _mlContext.Transforms.Text.FeaturizeText("FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -243,10 +402,59 @@ namespace Generateur
                                .Append(_mlContext.Transforms.CopyColumns("Label", "Column3"))
                                .Append(_mlContext.Regression.Trainers.FastTree());
                            _trainedModel = trainingPipeline3.Fit(_trainData);
-                           return _trainedModel;
+                           return _trainedModel;*/
 
                        case ColumnEnum.Column4:
-                           if (_includeDay)
+                           if(!_includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column4"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            else if (!_includeWeek && _includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column4"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }else
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column4"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            /*var trainingPipline4 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
+                            if(_includeMonth)
+                            {
+                                 trainingPipline4.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline4//.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"));
+                                }else
+                                {
+                                    trainingPipline4.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline4.Append(_mlContext.Transforms.Concatenate("Feature", "DayString"));
+                            }
+                            trainingPipline4.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column4"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());
+                           _trainedModel = trainingPipline4.Fit(_trainData);
+                           return _trainedModel;
+                          /* if (_includeDay)
                            {
                                var trainingPipeline4Day = _mlContext.Transforms.Text.FeaturizeText("FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -261,10 +469,59 @@ namespace Generateur
                                .Append(_mlContext.Transforms.CopyColumns("Label", "Column4"))
                                .Append(_mlContext.Regression.Trainers.FastTree());
                            _trainedModel = trainingPipeline4.Fit(_trainData);
-                           return _trainedModel;
+                           return _trainedModel;*/
 
                        case ColumnEnum.Column5:
-                           if (_includeDay)
+                           if(!_includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column5"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            else if (!_includeWeek && _includeMonth)
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column5"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }else
+                            {
+                                var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column5"))
+                                .Append(_mlContext.Regression.Trainers.FastTree());
+                                 _trainedModel = trainingPipline.Fit(_trainData);
+                                return _trainedModel;
+                            }
+                            /*var trainingPipline5 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
+                            if(_includeMonth)
+                            {
+                                 trainingPipline5.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline5//.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"));
+                                }else
+                                {
+                                    trainingPipline5.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline5.Append(_mlContext.Transforms.Concatenate("Feature", "DayString"));
+                            }
+                            trainingPipline5.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column5"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());
+                           _trainedModel = trainingPipline5.Fit(_trainData);
+                           return _trainedModel;
+                          /* if (_includeDay)
                            {
                                var trainingPipeline5Day = _mlContext.Transforms.Text.FeaturizeText("FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -279,10 +536,59 @@ namespace Generateur
                                .Append(_mlContext.Transforms.CopyColumns("Label", "Column5"))
                                .Append(_mlContext.Regression.Trainers.FastTree());
                            _trainedModel = trainingPipeline5.Fit(_trainData);
-                           return _trainedModel;
+                           return _trainedModel; */
 
                        case ColumnEnum.Column6:
-                           if (_includeDay)
+                                if(!_includeMonth)
+                                {
+                                    var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                    .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                    .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column6"))
+                                    .Append(_mlContext.Regression.Trainers.FastTree());
+                                    _trainedModel = trainingPipline.Fit(_trainData);
+                                    return _trainedModel;
+                                }
+                                else if (!_includeWeek && _includeMonth)
+                                {
+                                    var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                    .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                    .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                    .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column6"))
+                                    .Append(_mlContext.Regression.Trainers.FastTree());
+                                     _trainedModel = trainingPipline.Fit(_trainData);
+                                    return _trainedModel;
+                                }else
+                                {
+                                    var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                    .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                    .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                    .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column6"))
+                                    .Append(_mlContext.Regression.Trainers.FastTree());
+                                     _trainedModel = trainingPipline.Fit(_trainData);
+                                    return _trainedModel;
+                                }
+                     /*var trainingPipline6 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
+                            if(_includeMonth)
+                            {
+                                 trainingPipline6.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"));
+                                 if(_includeWeek)
+                                {
+                                    trainingPipline6//.Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "WeekString", "Week"))
+                                     .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"));
+                                }else
+                                {
+                                    trainingPipline6.Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"));
+                                }                               
+                            }
+                            else
+                            {
+                                trainingPipline6.Append(_mlContext.Transforms.Concatenate("Feature", "DayString"));
+                            }
+                            trainingPipline6.Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Column6"))
+                                   .Append(_mlContext.Regression.Trainers.FastTree());
+                           _trainedModel = trainingPipline6.Fit(_trainData);
+                           return _trainedModel;
+                          /* if (_includeDay)
                            {
                                var trainingPipeline6Day = _mlContext.Transforms.Text.FeaturizeText("FeatureDate", "DateString")
                                    .Append(_mlContext.Transforms.Text.FeaturizeText("DayString", "Day"))
@@ -297,7 +603,7 @@ namespace Generateur
                                .Append(_mlContext.Transforms.CopyColumns("Label", "Column6"))
                                .Append(_mlContext.Regression.Trainers.FastTree());
                            _trainedModel = trainingPipeline6.Fit(_trainData);
-                           return _trainedModel;
+                           return _trainedModel;*/
 
                    }
                    
@@ -317,6 +623,8 @@ namespace Generateur
 
 
         }
+
+   
         private static void Evaluate(MLContext mlContext, ITransformer model)
         {
             var prediction = model.Transform(_testData);
@@ -397,8 +705,8 @@ namespace Generateur
                     var test2 = new ResultatJsonFormat()
                     {
                         Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString(),
-                        Column1 =  _predictedCombinaison.Column1
+                        DateString = _datePrediction.ToShortDateString()/*,
+                        Column1 =  _predictedCombinaison.Column1*/
                     };
                     return predictionFunction2.Predict(test2).Column2;
 
@@ -407,9 +715,9 @@ namespace Generateur
                     var test3 = new ResultatJsonFormat()
                     {
                         Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString(),
+                        DateString = _datePrediction.ToShortDateString()/*,
                         Column1 =  _predictedCombinaison.Column1,
-                        Column2 = _predictedCombinaison.Column2
+                        Column2 = _predictedCombinaison.Column2*/
                     };
                     return predictionFunction3.Predict(test3).Column3;
 
@@ -418,10 +726,10 @@ namespace Generateur
                     var test4 = new ResultatJsonFormat()
                     {
                         Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString(),
+                        DateString = _datePrediction.ToShortDateString()/*,
                         Column1 =  _predictedCombinaison.Column1,
                         Column2 = _predictedCombinaison.Column2,
-                        Column3 = _predictedCombinaison.Column3
+                        Column3 = _predictedCombinaison.Column3*/
                     };
                     return predictionFunction4.Predict(test4).Column4;
 
@@ -430,11 +738,11 @@ namespace Generateur
                     var test5 = new ResultatJsonFormat()
                     {
                         Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString(),
+                        DateString = _datePrediction.ToShortDateString()/*,
                         Column1 =  _predictedCombinaison.Column1,
                         Column2 = _predictedCombinaison.Column2,
                         Column3 = _predictedCombinaison.Column3,
-                        Column4 = _predictedCombinaison.Column4
+                        Column4 = _predictedCombinaison.Column4*/
                     };
                     return predictionFunction5.Predict(test5).Column5;
 
@@ -443,12 +751,12 @@ namespace Generateur
                     var test6 = new ResultatJsonFormat()
                     {
                         Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString(),
+                        DateString = _datePrediction.ToShortDateString()/*,
                         Column1 =  _predictedCombinaison.Column1,
                         Column2 = _predictedCombinaison.Column2,
                         Column3 = _predictedCombinaison.Column3,
                         Column4 = _predictedCombinaison.Column4,
-                        Column5 = _predictedCombinaison.Column5
+                        Column5 = _predictedCombinaison.Column5*/
                     };
                     return predictionFunction6.Predict(test6).Column6;
             }
