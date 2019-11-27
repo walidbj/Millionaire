@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using Microsoft.ML.Data;
@@ -32,8 +33,22 @@ namespace Generateur.Model
         }
 
         [LoadColumn(8)] public string Day => Date.DayOfWeek.ToString();
+        [LoadColumn(9)] public string Month => Date.Month.ToString();
+        [LoadColumn(10)] public float Week => GetWeekNumberOfMonth(Date);
 
 
+        private int GetWeekNumberOfMonth(DateTime date)
+        {
+            date = date.Date;
+            DateTime firstMonthDay = new DateTime(date.Year, date.Month, 1);
+            DateTime firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            if (firstMonthMonday > date)
+            {
+                firstMonthDay = firstMonthDay.AddMonths(-1);
+                firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            }
+            return (date - firstMonthMonday).Days / 7 + 1;
+        }
     }
 
     /*public class ResultatJsonFormatTransformed : ResultatJsonFormat
