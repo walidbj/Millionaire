@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+}
+@model Table2JsonMvc.Models.TagModel
+
+
+@using (Html.BeginForm("Send", "Home", FormMethod.Post))
+{
+    <div class="row">
+        @Html.TextBoxFor(model =>model.TableTag, new { style = "width: 800px; height: 200px;"})
+    </div>
+
+    <div class="row">
+        <button type="submit">Send</button>
+    </div>
+
+}
+
