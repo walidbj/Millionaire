@@ -24,7 +24,7 @@ namespace Generateur.Model
         [LoadColumn(6)]
         public float Column6 { get; set; }
         [LoadColumn(7)]
-        public int Bonus { get; set; }
+        public float Bonus { get; set; }
         [LoadColumn(7)]
         public string DateString
         {
@@ -82,6 +82,7 @@ namespace Generateur.Model
         public int Column4 { get; set; }
         public int Column5 { get; set; }
         public int Column6 { get; set; }
+        public int Bonus { get; set; }
     }
 
     public class PredictionColumn1 { 
@@ -117,6 +118,12 @@ namespace Generateur.Model
     
         [ColumnName("Score")]
         public float Column6 { get; set; }
+    }
+
+        public class PredictionBonus { 
+    
+        [ColumnName("Score")]
+        public float Bonus { get; set; }
     }
 
 
