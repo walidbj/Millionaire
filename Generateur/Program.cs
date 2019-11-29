@@ -67,9 +67,10 @@ namespace Generateur
             PredictColumn4();
             PredictColumn5();
             PredictColumn6();
+            PredictBonus();
 
             Console.WriteLine(
-                $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}");
+                $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}, Bonus {_predictedCombinaison.Bonus}");
         }
 
         private static void PredictColumn1()
@@ -116,6 +117,12 @@ namespace Generateur
             _predictedCombinaison.Column6 = (int) TestPrediction(trainingPipeline, ColumnEnum.Column6);
         }
 
+        private static void PredictBonus()
+        {
+            var trainingPipeline = BuildAndTrainModel(ColumnEnum.Bonus);
+            Evaluate(_mlContext, trainingPipeline);
+            _predictedCombinaison.Bonus = (int) TestPrediction(trainingPipeline, ColumnEnum.Bonus);
+        }
 
         private static List<ResultatJsonFormat> JsonToList()
         {
@@ -567,6 +574,35 @@ namespace Generateur
                                      _trainedModel = trainingPipline.Fit(_trainData);
                                     return _trainedModel;
                                 }
+                        case ColumnEnum.Bonus:
+                                if(!_includeMonth)
+                                    {
+                                        var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                        .Append(_mlContext.Transforms.Concatenate("Features", "DayString"))
+                                        .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Bonus"))
+                                        .Append(_mlContext.Regression.Trainers.FastTree());
+                                        _trainedModel = trainingPipline.Fit(_trainData);
+                                        return _trainedModel;
+                                    }
+                                    else if (!_includeWeek && _includeMonth)
+                                    {
+                                        var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                        .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                        .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString"))
+                                        .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Bonus"))
+                                        .Append(_mlContext.Regression.Trainers.FastTree());
+                                         _trainedModel = trainingPipline.Fit(_trainData);
+                                        return _trainedModel;
+                                    }else
+                                    {
+                                        var trainingPipline = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day")
+                                        .Append(_mlContext.Transforms.Text.FeaturizeText(outputColumnName: "MonthString", "Month"))
+                                        .Append(_mlContext.Transforms.Concatenate("Features", "DayString", "MonthString", "Week"))
+                                        .Append(_mlContext.Transforms.CopyColumns(outputColumnName:"Label", "Bonus"))
+                                        .Append(_mlContext.Regression.Trainers.FastTree());
+                                         _trainedModel = trainingPipline.Fit(_trainData);
+                                        return _trainedModel;
+                                    }
                      /*var trainingPipline6 = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "DayString", "Day");
                             if(_includeMonth)
                             {
@@ -759,6 +795,20 @@ namespace Generateur
                         Column5 = _predictedCombinaison.Column5*/
                     };
                     return predictionFunction6.Predict(test6).Column6;
+
+               case ColumnEnum.Bonus:
+                    var predictionFunctionBonus = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionBonus>(model);
+                    var testBonus = new ResultatJsonFormat()
+                    {
+                        Date = _datePrediction,
+                        DateString = _datePrediction.ToShortDateString()/*,
+                        Column1 =  _predictedCombinaison.Column1,
+                        Column2 = _predictedCombinaison.Column2,
+                        Column3 = _predictedCombinaison.Column3,
+                        Column4 = _predictedCombinaison.Column4,
+                        Column5 = _predictedCombinaison.Column5*/
+                    };
+                    return predictionFunctionBonus.Predict(testBonus).Bonus;
             }
 
             return 0;
