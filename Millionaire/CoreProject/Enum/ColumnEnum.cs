@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Generateur.Enum
+namespace CoreProject.Enum
 {
     public enum  ColumnEnum
     {

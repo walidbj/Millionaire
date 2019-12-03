@@ -1,0 +1,9 @@
+C:\git_wbj\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\Data\result.json
+C:\git_wbj\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.deps.json
+C:\git_wbj\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.dll
+C:\git_wbj\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csprojAssemblyReference.cache
+C:\git_wbj\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.AssemblyInfoInputs.cache
+C:\git_wbj\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.AssemblyInfo.cs
+C:\git_wbj\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.pdb
+C:\git_wbj\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.dll
+C:\git_wbj\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.pdb
