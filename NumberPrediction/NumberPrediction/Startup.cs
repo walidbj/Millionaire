@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NumberPrediction.Models;
 
 namespace NumberPrediction
 {
@@ -24,6 +25,7 @@ namespace NumberPrediction
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<IDocumentDBRepository<ResultatJsonFormat>>(new DocumentDBRepository<ResultatJsonFormat>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

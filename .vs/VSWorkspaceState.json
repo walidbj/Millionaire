@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NumberPrediction",
+    "\\NumberPrediction\\NumberPrediction",
+    "\\NumberPrediction\\NumberPrediction\\Controllers",
+    "\\NumberPrediction\\NumberPrediction\\Models",
+    "\\NumberPrediction\\NumberPrediction\\Views",
+    "\\NumberPrediction\\NumberPrediction\\Views\\ParseText",
+    "\\Table2JsonMvc",
+    "\\Table2JsonMvc\\Views",
+    "\\Table2JsonMvc\\Views\\Home"
   ],
-  "SelectedNode": "\\ModelBuilder",
+  "SelectedNode": "\\NumberPrediction\\NumberPrediction\\Controllers\\HomeController.cs",
   "PreviewInSolutionExplorer": false
 }

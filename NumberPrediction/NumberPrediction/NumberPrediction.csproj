@@ -6,12 +6,18 @@
 
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB" Version="2.9.2" />
+    <PackageReference Include="Microsoft.Azure.DocumentDB.Core" Version="2.9.2" />
     <PackageReference Include="Nancy" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Millionaire\CoreProject\CoreProject.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 
 </Project>

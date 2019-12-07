@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.29509.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generateur", "..\Generateur\Generateur.csproj", "{EA540B64-6B72-4068-A210-6E96B00CA5AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreProject", "CoreProject\CoreProject.csproj", "{49D8D51F-BE7B-41FF-87E7-EA72532BA2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreProject", "CoreProject\CoreProject.csproj", "{49D8D51F-BE7B-41FF-87E7-EA72532BA2B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NumberPrediction", "..\NumberPrediction\NumberPrediction\NumberPrediction.csproj", "{125FDE00-535F-45D3-834B-3DF93D00B296}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NumberPrediction", "..\NumberPrediction\NumberPrediction\NumberPrediction.csproj", "{125FDE00-535F-45D3-834B-3DF93D00B296}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
