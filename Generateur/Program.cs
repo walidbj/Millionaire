@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using Generateur.Enum;
-using Generateur.Model;
+using CoreProject;
+using CoreProject.Enum;
+using CoreProject.Model;
 using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Transforms.Text;
@@ -34,29 +35,26 @@ namespace Generateur
         {
             Console.WriteLine("Please enter a date for Prediction dd/MM/yyyy");
             _datePrediction = DateTime.ParseExact(Console.ReadLine(),"dd/MM/yyyy", null);
-            Console.WriteLine("Include month? Y/N");
-            _includeMonth = Console.ReadLine() == "Y";
 
-            if(_includeMonth)
-            {
-                             Console.WriteLine("Include week? Y/N");
-                                _includeWeek = Console.ReadLine() == "Y";
-            }
+            _includeDay = args.Contains("-d");
+            _includeMonth = args.Contains("-m");
+            _includeWeek = args.Contains("-w");
+
 
             _mlContext = new MLContext();
             Console.WriteLine("Loading Data set");
             var data = JsonToList();
-            data.ForEach(d =>
-            {
-                d.DateString = d.Date.ToShortDateString();
-            });
+
 
             _trainingDataView = _mlContext.Data.LoadFromEnumerable<ResultatJsonFormat>(data);
 
             DataOperationsCatalog.TrainTestData dataSplit = _mlContext.Data.TrainTestSplit(_trainingDataView, 0.99);
             _trainData = dataSplit.TrainSet;
             _testData = dataSplit.TestSet;
-            Console.WriteLine("Finished loading data set");
+
+            var coreFacde = new CoreFacade(_includeDay, _includeMonth, _includeWeek, _mlContext, _trainData, _testData, _datePrediction);
+            _predictedCombinaison = coreFacde.PredictCombinaison();
+            /*Console.WriteLine("Finished loading data set");
 
             PredictColumn1();
             PredictColumn2();
@@ -64,7 +62,7 @@ namespace Generateur
             PredictColumn4();
             PredictColumn5();
             PredictColumn6();
-            PredictBonus();
+            PredictBonus();*/
 
             Console.WriteLine(
                 $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}, Bonus {_predictedCombinaison.Bonus}");
@@ -258,8 +256,7 @@ namespace Generateur
                     var predictionFunction = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn1>(model);
                     var test = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction.Predict(test).Column1;
 
@@ -267,8 +264,7 @@ namespace Generateur
                     var predictionFunction2 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn2>(model);
                     var test2 = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction2.Predict(test2).Column2;
 
@@ -276,8 +272,7 @@ namespace Generateur
                     var predictionFunction3 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn3>(model);
                     var test3 = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction3.Predict(test3).Column3;
 
@@ -285,8 +280,7 @@ namespace Generateur
                     var predictionFunction4 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn4>(model);
                     var test4 = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction4.Predict(test4).Column4;
 
@@ -294,8 +288,7 @@ namespace Generateur
                     var predictionFunction5 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn5>(model);
                     var test5 = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction5.Predict(test5).Column5;
 
@@ -303,8 +296,7 @@ namespace Generateur
                     var predictionFunction6 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn6>(model);
                     var test6 = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunction6.Predict(test6).Column6;
 
@@ -312,8 +304,7 @@ namespace Generateur
                     var predictionFunctionBonus = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionBonus>(model);
                     var testBonus = new ResultatJsonFormat()
                     {
-                        Date = _datePrediction,
-                        DateString = _datePrediction.ToShortDateString()
+                        Date = _datePrediction
                     };
                     return predictionFunctionBonus.Predict(testBonus).Bonus;
             }

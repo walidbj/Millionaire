@@ -35,8 +35,36 @@ namespace CoreProject
         }
         public PredictedCombinaison PredictCombinaison()
         {
-            BuildAndTrainUsingParams(ColumnEnum.Column1);
-            return null;
+            PredictedCombinaison result = new PredictedCombinaison();
+            var trainingColumn1 = BuildAndTrainUsingParams(ColumnEnum.Column1);
+            Evaluate(trainingColumn1);
+            result.Column1 = PredictColumn(trainingColumn1, ColumnEnum.Column1);
+
+            var trainingColumn2 = BuildAndTrainUsingParams(ColumnEnum.Column2);
+            Evaluate(trainingColumn2);
+            result.Column2 = PredictColumn(trainingColumn2, ColumnEnum.Column2);
+
+            var trainingColumn3 = BuildAndTrainUsingParams(ColumnEnum.Column3);
+            Evaluate(trainingColumn3);
+            result.Column3 = PredictColumn(trainingColumn3, ColumnEnum.Column3);
+
+            var trainingColumn4 = BuildAndTrainUsingParams(ColumnEnum.Column4);
+            Evaluate(trainingColumn4);
+            result.Column4 = PredictColumn(trainingColumn4, ColumnEnum.Column4);
+
+            var trainingColumn5 = BuildAndTrainUsingParams(ColumnEnum.Column5);
+            Evaluate(trainingColumn5);
+            result.Column5 = PredictColumn(trainingColumn5, ColumnEnum.Column5);
+
+           var trainingColumn6 = BuildAndTrainUsingParams(ColumnEnum.Column6);
+            Evaluate(trainingColumn5);
+            result.Column6 = PredictColumn(trainingColumn6, ColumnEnum.Column6);
+                       
+            var trainingColumnBonus = BuildAndTrainUsingParams(ColumnEnum.Bonus);
+            Evaluate(trainingColumnBonus);
+            result.Bonus = PredictColumn(trainingColumnBonus, ColumnEnum.Bonus);
+
+            return result;
         }
 
         private ITransformer BuildAndTrainUsingParams(ColumnEnum column)
@@ -93,7 +121,7 @@ namespace CoreProject
             var prediction = model.Transform(_testData);
             var metrics = _mlContext.Regression.Evaluate(prediction, "Label", "Score");
         }
-        private float PredictColumn(ITransformer model, ColumnEnum column)
+        private int PredictColumn(ITransformer model, ColumnEnum column)
         {
                 var test = new ResultatJsonFormat()
                 {
@@ -104,25 +132,25 @@ namespace CoreProject
             {
                 case ColumnEnum.Column1:
                     var predictionFunction = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn1>(model);
-                    return predictionFunction.Predict(test).Column1;
+                    return (int)predictionFunction.Predict(test).Column1;
                 case ColumnEnum.Column2:
                     var predictionFunction2 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn2>(model);
-                    return predictionFunction2.Predict(test).Column2;
+                    return (int)predictionFunction2.Predict(test).Column2;
                 case ColumnEnum.Column3:
                     var predictionFunction3 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn3>(model);
-                    return predictionFunction3.Predict(test).Column3;
+                    return (int)predictionFunction3.Predict(test).Column3;
                 case ColumnEnum.Column4:
                     var predictionFunction4 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn4>(model);
-                    return predictionFunction4.Predict(test).Column4;
+                    return (int)predictionFunction4.Predict(test).Column4;
                 case ColumnEnum.Column5:
                     var predictionFunction5 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn5>(model);
-                    return predictionFunction5.Predict(test).Column5;
+                    return (int)predictionFunction5.Predict(test).Column5;
                 case ColumnEnum.Column6:
                     var predictionFunction6 = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionColumn6>(model);
-                    return predictionFunction6.Predict(test).Column6;
+                    return (int)predictionFunction6.Predict(test).Column6;
                  case ColumnEnum.Bonus:
                     var predictionFunctionBonus = _mlContext.Model.CreatePredictionEngine<ResultatJsonFormat, PredictionBonus>(model);
-                    return predictionFunctionBonus.Predict(test).Bonus;
+                    return (int)predictionFunctionBonus.Predict(test).Bonus;
             }
             return 0;
         }

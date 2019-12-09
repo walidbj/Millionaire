@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Generateur": {
+      "commandName": "Project",
+      "commandLineArgs": "-d -m"
+    }
+  }
+}

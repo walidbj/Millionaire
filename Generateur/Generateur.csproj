@@ -20,4 +20,12 @@
     <PackageReference Include="Microsoft.ML.FastTree" Version="1.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Millionaire\CoreProject\CoreProject.csproj" />
+  </ItemGroup>
+
 </Project>
