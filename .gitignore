@@ -8,3 +8,8 @@ Table2JsonMvc/obj
 /Millionaire/.vs/Millionaire
 /NumberPrediction/NumberPrediction/obj
 /NumberPrediction/NumberPrediction/bin
+/.vs/Millionaire/v16
+/Millionaire/CoreProject/bin/Debug/netstandard2.0
+/Millionaire/CoreProject/obj/Release/netstandard2.0/CoreProject.assets.cache
+/Millionaire/CoreProject/obj/Release/netstandard2.0/CoreProject.AssemblyInfoInputs.cache
+/Millionaire/CoreProject/obj/CoreProject.csproj.nuget.cache

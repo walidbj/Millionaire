@@ -54,18 +54,42 @@ namespace Generateur
 
             var coreFacde = new CoreFacade(_includeDay, _includeMonth, _includeWeek, _mlContext, _trainData, _testData, _datePrediction);
             _predictedCombinaison = coreFacde.PredictCombinaison();
-            /*Console.WriteLine("Finished loading data set");
-
-            PredictColumn1();
-            PredictColumn2();
-            PredictColumn3();
-            PredictColumn4();
-            PredictColumn5();
-            PredictColumn6();
-            PredictBonus();*/
 
             Console.WriteLine(
                 $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}, Bonus {_predictedCombinaison.Bonus}");
+
+            DisplayNumberOccurences(data, _datePrediction);
+        }
+
+        private static void DisplayNumberOccurences(List<ResultatJsonFormat> data, DateTime dateSelected)
+        {
+            var datafiltered = data;
+            ResultatJsonFormat newDateSelected = new ResultatJsonFormat
+            {
+                Date = dateSelected
+            };
+            if (_includeDay)
+                datafiltered = datafiltered.Where(d => d.Day == newDateSelected.Day).ToList();
+            if (_includeWeek)
+                datafiltered = datafiltered.Where(d => d.Week == newDateSelected.Week).ToList();
+            if (_includeMonth)
+                datafiltered = datafiltered.Where(d => d.Month == newDateSelected.Month).ToList();
+
+            List<float> res = new List<float>();
+            foreach(var item in datafiltered)
+            {
+                res.AddRange(new float[] { item.Column1, item.Column2, item.Column3, item.Column4, item.Column5, item.Column6 });  
+            }
+
+            foreach (var line in res.GroupBy(info => info)
+                        .Select(group => new {
+                            Metric = group.Key,
+                            Count = group.Count()
+                        })
+                        .OrderBy(x => x.Count))
+            {
+                Console.WriteLine("{0} {1}", line.Metric, line.Count);
+            }
         }
 
         private static void PredictColumn1()

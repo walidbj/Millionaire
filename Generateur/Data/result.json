@@ -1,5 +1,105 @@
 [
   {
+    "date": "2019-12-07T00:00:00.0000000-05:00",
+    "column1": 18,
+    "column2": 32,
+    "column3": 36,
+    "column4": 37,
+    "column5": 38,
+    "column6": 45,
+    "bonus": 13
+  },
+  {
+    "date": "2019-12-11T00:00:00.0000000-05:00",
+    "column1": 7,
+    "column2": 17,
+    "column3": 21,
+    "column4": 34,
+    "column5": 47,
+    "column6": 48,
+    "bonus": 27
+  },
+  {
+    "date": "2019-12-14T00:00:00.0000000-05:00",
+    "column1": 9,
+    "column2": 12,
+    "column3": 17,
+    "column4": 23,
+    "column5": 41,
+    "column6": 44,
+    "bonus": 3
+  },
+  {
+    "date": "2019-12-18T00:00:00.0000000-05:00",
+    "column1": 18,
+    "column2": 22,
+    "column3": 25,
+    "column4": 36,
+    "column5": 38,
+    "column6": 44,
+    "bonus": 8
+  },
+  {
+    "date": "2019-12-21T00:00:00.0000000-05:00",
+    "column1": 16,
+    "column2": 18,
+    "column3": 19,
+    "column4": 45,
+    "column5": 47,
+    "column6": 48,
+    "bonus": 21
+  },
+  {
+    "date": "2019-12-25T00:00:00.0000000-05:00",
+    "column1": 17,
+    "column2": 24,
+    "column3": 28,
+    "column4": 33,
+    "column5": 36,
+    "column6": 45,
+    "bonus": 48
+  },
+  {
+    "date": "2019-12-28T00:00:00.0000000-05:00",
+    "column1": 2,
+    "column2": 4,
+    "column3": 12,
+    "column4": 18,
+    "column5": 29,
+    "column6": 41,
+    "bonus": 30
+  },
+  {
+    "date": "2019-11-30T00:00:00.0000000-05:00",
+    "column1": 1,
+    "column2": 8,
+    "column3": 18,
+    "column4": 24,
+    "column5": 30,
+    "column6": 45,
+    "bonus": 13
+  },
+  {
+    "date": "2019-12-04T00:00:00.0000000-05:00",
+    "column1": 2,
+    "column2": 3,
+    "column3": 4,
+    "column4": 10,
+    "column5": 21,
+    "column6": 43,
+    "bonus": 19
+  },
+  {
+    "date": "2019-11-30T00:00:00.0000000-05:00",
+    "column1": 1,
+    "column2": 8,
+    "column3": 18,
+    "column4": 24,
+    "column5": 30,
+    "column6": 45,
+    "bonus": 13
+  },
+  {
     "Date": "\/Date(1574830800000)\/",
     "Column1": 13,
     "Column2": 15,

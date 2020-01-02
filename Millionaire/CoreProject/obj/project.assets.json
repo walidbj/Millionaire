@@ -3640,23 +3640,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wbjemia\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\git_wbj\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
+      "projectUniqueName": "C:\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
       "projectName": "CoreProject",
-      "projectPath": "C:\\git_wbj\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
-      "packagesPath": "C:\\Users\\wbjemia\\.nuget\\packages\\",
-      "outputPath": "C:\\git_wbj\\Millionaire\\Millionaire\\CoreProject\\obj\\",
+      "projectPath": "C:\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Millionaire\\Millionaire\\CoreProject\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\wbjemia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3664,8 +3660,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://projetsrtm.pkgs.visualstudio.com/_packaging/NugetExo/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netstandard2.0": {
