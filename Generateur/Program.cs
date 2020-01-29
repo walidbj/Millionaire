@@ -58,7 +58,7 @@ namespace Generateur
             Console.WriteLine(
                 $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}, Bonus {_predictedCombinaison.Bonus}");
 
-            DisplayNumberOccurences(data, _datePrediction);
+           // DisplayNumberOccurences(data, _datePrediction);
         }
 
         private static void DisplayNumberOccurences(List<ResultatJsonFormat> data, DateTime dateSelected)
