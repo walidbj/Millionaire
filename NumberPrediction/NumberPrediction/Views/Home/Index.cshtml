@@ -2,16 +2,53 @@
     ViewData["Title"] = "Home Page";
 }
 
-@model NumberPrediction.Models.TagModel
+@model NumberPrediction.Models.PredictionInput
 
 @using (Html.BeginForm("Send", "Home", FormMethod.Post))
 {
-    <div class="row">
+    @*<div class="row">
         @Html.TextBoxFor(model => model.TableTag, new { style = "width: 800px; height: 200px;" })
+    </div>*@
+
+    @using (Html.BeginForm())
+    {
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.InputDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.InputDate, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IncludeDay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IncludeDay, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IncludeWeek, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IncludeWeek, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IncludeMonth, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.IncludeMonth, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Predict" class="btn btn-default" />
+            </div>
+        </div>
     </div>
 
-    <div class="row">
-        <button type="submit">Send</button>
-    </div>
+    }
+
 
 }

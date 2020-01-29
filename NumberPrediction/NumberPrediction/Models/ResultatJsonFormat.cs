@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,6 +8,7 @@ namespace NumberPrediction.Models
 {
     public class ResultatJsonFormat
     {
+        [DisplayFormat(DataFormatString = "{0:d}")]
         public DateTime Date { get; set; }
         public int Column1 { get; set; }
         public int Column2 { get; set; }
