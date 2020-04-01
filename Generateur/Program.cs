@@ -15,9 +15,9 @@ namespace Generateur
 {
     class Program
     {
-        
+
         private static MLContext _mlContext;
-        private static PredictionEngine<ResultatJsonFormat,PredictionColumn1> _predEngine;
+        private static PredictionEngine<ResultatJsonFormat, PredictionColumn1> _predEngine;
         private static ITransformer _trainedModel;
         private static PredictedCombinaison _predictedCombinaison = new PredictedCombinaison();
         private static string _modelPath => @"C:\\model.zip";
@@ -34,11 +34,11 @@ namespace Generateur
         static void Main(string[] args)
         {
             Console.WriteLine("Please enter a date for Prediction dd/MM/yyyy");
-            _datePrediction = DateTime.ParseExact(Console.ReadLine(),"dd/MM/yyyy", null);
+            _datePrediction = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
 
-            _includeDay = args.Contains("-d");
-            _includeMonth = args.Contains("-m");
-            _includeWeek = args.Contains("-w");
+            //_includeDay = args.Contains("-d");
+            //_includeMonth = args.Contains("-m");
+            //_includeWeek = args.Contains("-w");
 
 
             _mlContext = new MLContext();
@@ -52,13 +52,26 @@ namespace Generateur
             _trainData = dataSplit.TrainSet;
             _testData = dataSplit.TestSet;
 
-            var coreFacde = new CoreFacade(_includeDay, _includeMonth, _includeWeek, _mlContext, _trainData, _testData, _datePrediction);
+            Console.WriteLine("Prediction for all");
+            MainTraitement(true, true, true);
+            Console.WriteLine("Prediction for day-week");
+            MainTraitement(true, true, false);
+            Console.WriteLine("Prediction for week-month");
+            MainTraitement(false, true, true);
+
+            // DisplayNumberOccurences(data, _datePrediction);
+        }
+
+        private static void MainTraitement(bool includeDay, bool includeWeek, bool includeMonth)
+        {
+            _includeDay = includeDay;
+            _includeMonth = includeMonth;
+            _includeWeek = includeWeek;
+            var coreFacde = new CoreFacade(includeDay, includeMonth, includeWeek, _mlContext, _trainData, _testData, _datePrediction);
             _predictedCombinaison = coreFacde.PredictCombinaison();
 
             Console.WriteLine(
                 $"Predicted combinaison is {_predictedCombinaison.Column1}, {_predictedCombinaison.Column2}, {_predictedCombinaison.Column3}, {_predictedCombinaison.Column4}, {_predictedCombinaison.Column5}, {_predictedCombinaison.Column6}, Bonus {_predictedCombinaison.Bonus}");
-
-           // DisplayNumberOccurences(data, _datePrediction);
         }
 
         private static void DisplayNumberOccurences(List<ResultatJsonFormat> data, DateTime dateSelected)

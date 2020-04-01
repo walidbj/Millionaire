@@ -2,7 +2,7 @@
   "profiles": {
     "Generateur": {
       "commandName": "Project",
-      "commandLineArgs": "-m -d -w"
+      "commandLineArgs": "-w -d "
     }
   }
 }
