@@ -1,5 +1,75 @@
 [
   {
+    "date": "2020-08-05T00:00:00.0000000-05:00",
+    "column1": 3,
+    "column2": 14,
+    "column3": 23,
+    "column4": 30,
+    "column5": 38,
+    "column6": 43,
+    "bonus": 24
+  },
+  {
+    "date": "2020-08-01T00:00:00.0000000-05:00",
+    "column1": 12,
+    "column2": 13,
+    "column3": 17,
+    "column4": 22,
+    "column5": 39,
+    "column6": 40,
+    "bonus": 25
+  },
+  {
+    "date": "2020-07-29T00:00:00.0000000-05:00",
+    "column1": 1,
+    "column2": 11,
+    "column3": 17,
+    "column4": 19,
+    "column5": 22,
+    "column6": 45,
+    "bonus": 14
+  },
+  {
+    "date": "2020-07-25T00:00:00.0000000-05:00",
+    "column1": 6,
+    "column2": 21,
+    "column3": 34,
+    "column4": 44,
+    "column5": 45,
+    "column6": 48,
+    "bonus": 33
+  },
+  {
+    "date": "2020-07-22T00:00:00.0000000-05:00",
+    "column1": 5,
+    "column2": 14,
+    "column3": 19,
+    "column4": 42,
+    "column5": 46,
+    "column6": 47,
+    "bonus": 8
+  },
+  {
+    "date": "2020-07-18T00:00:00.0000000-05:00",
+    "column1": 5,
+    "column2": 23,
+    "column3": 37,
+    "column4": 40,
+    "column5": 44,
+    "column6": 45,
+    "bonus": 47
+  },
+  {
+    "date": "2020-07-15T00:00:00.0000000-05:00",
+    "column1": 5,
+    "column2": 7,
+    "column3": 17,
+    "column4": 22,
+    "column5": 43,
+    "column6": 44,
+    "bonus": 14
+  },
+  {
     "date": "2020-07-11T00:00:00.0000000-05:00",
     "column1": 16,
     "column2": 22,
