@@ -11,8 +11,8 @@ C:\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\Data\result.json
 C:\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.deps.json
 C:\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.dll
 C:\Millionaire\Millionaire\CoreProject\bin\Debug\netstandard2.0\CoreProject.pdb
-C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csprojAssemblyReference.cache
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.AssemblyInfoInputs.cache
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.AssemblyInfo.cs
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.dll
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.pdb
+C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csproj.CoreCompileInputs.cache
