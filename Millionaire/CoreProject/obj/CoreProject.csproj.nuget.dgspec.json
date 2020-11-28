@@ -10,14 +10,14 @@
         "projectUniqueName": "C:\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
         "projectName": "CoreProject",
         "projectPath": "C:\\Millionaire\\Millionaire\\CoreProject\\CoreProject.csproj",
-        "packagesPath": "C:\\Users\\walid.benjemia\\.nuget\\packages\\",
+        "packagesPath": "C:\\Users\\walid\\.nuget\\packages\\",
         "outputPath": "C:\\Millionaire\\Millionaire\\CoreProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\walid.benjemia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\walid\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -29,6 +29,7 @@
         },
         "frameworks": {
           "netstandard2.0": {
+            "targetAlias": "netstandard2.0",
             "projectReferences": {}
           }
         },
@@ -40,6 +41,7 @@
       },
       "frameworks": {
         "netstandard2.0": {
+          "targetAlias": "netstandard2.0",
           "dependencies": {
             "Microsoft.ML": {
               "target": "Package",
@@ -66,7 +68,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
