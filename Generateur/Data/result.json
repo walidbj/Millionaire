@@ -1,5 +1,35 @@
 [
   {
+    "date": "2020-12-05T00:00:00.0000000-05:00",
+    "column1": 3,
+    "column2": 10,
+    "column3": 13,
+    "column4": 21,
+    "column5": 27,
+    "column6": 45,
+    "bonus": 23
+  },
+  {
+    "date": "2020-12-02T00:00:00.0000000-05:00",
+    "column1": 22,
+    "column2": 24,
+    "column3": 28,
+    "column4": 41,
+    "column5": 47,
+    "column6": 49,
+    "bonus": 21
+  },
+  {
+    "date": "2020-11-28T00:00:00.0000000-05:00",
+    "column1": 3,
+    "column2": 4,
+    "column3": 16,
+    "column4": 23,
+    "column5": 26,
+    "column6": 44,
+    "bonus": 18
+  },
+  {
     "date": "2020-11-25T00:00:00.0000000-05:00",
     "column1": 13,
     "column2": 14,
