@@ -1,5 +1,95 @@
 [
   {
+    "date": "2021-03-10T00:00:00.0000000-05:00",
+    "column1": 30,
+    "column2": 31,
+    "column3": 35,
+    "column4": 36,
+    "column5": 43,
+    "column6": 48,
+    "bonus": 28
+  },
+  {
+    "date": "2021-03-06T00:00:00.0000000-05:00",
+    "column1": 2,
+    "column2": 14,
+    "column3": 18,
+    "column4": 21,
+    "column5": 26,
+    "column6": 48,
+    "bonus": 19
+  },
+  {
+    "date": "2021-03-03T00:00:00.0000000-05:00",
+    "column1": 3,
+    "column2": 11,
+    "column3": 33,
+    "column4": 34,
+    "column5": 36,
+    "column6": 43,
+    "bonus": 42
+  },
+  {
+    "date": "2021-02-27T00:00:00.0000000-05:00",
+    "column1": 11,
+    "column2": 15,
+    "column3": 16,
+    "column4": 20,
+    "column5": 46,
+    "column6": 49,
+    "bonus": 17
+  },
+  {
+    "date": "2021-02-24T00:00:00.0000000-05:00",
+    "column1": 11,
+    "column2": 36,
+    "column3": 37,
+    "column4": 38,
+    "column5": 39,
+    "column6": 45,
+    "bonus": 10
+  },
+  {
+    "date": "2021-02-20T00:00:00.0000000-05:00",
+    "column1": 2,
+    "column2": 14,
+    "column3": 15,
+    "column4": 21,
+    "column5": 29,
+    "column6": 46,
+    "bonus": 7
+  },
+  {
+    "date": "2021-02-17T00:00:00.0000000-05:00",
+    "column1": 7,
+    "column2": 16,
+    "column3": 18,
+    "column4": 43,
+    "column5": 45,
+    "column6": 48,
+    "bonus": 14
+  },
+  {
+    "date": "2021-02-13T00:00:00.0000000-05:00",
+    "column1": 16,
+    "column2": 17,
+    "column3": 27,
+    "column4": 40,
+    "column5": 41,
+    "column6": 45,
+    "bonus": 38
+  },
+  {
+    "date": "2021-02-10T00:00:00.0000000-05:00",
+    "column1": 4,
+    "column2": 14,
+    "column3": 22,
+    "column4": 26,
+    "column5": 45,
+    "column6": 48,
+    "bonus": 20
+  },
+  {
     "date": "2021-02-06T00:00:00.0000000-05:00",
     "column1": 6,
     "column2": 11,
