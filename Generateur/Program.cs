@@ -257,7 +257,7 @@ namespace Generateur
             {
                 var res = _mlContext.Transforms.Concatenate("Features", features.ToArray())
                             .Append(_mlContext.Transforms.CopyColumns("Label", System.Enum.GetName(typeof(ColumnEnum), column)))
-                            .Append(_mlContext.Regression.Trainers.FastTreeTweedie());
+                            .Append(_mlContext.Regression.Trainers.Sdca());
 
                       return res.Fit(_trainData);
 
@@ -266,12 +266,12 @@ namespace Generateur
             {
                 var res2 = estimatorTransformer.Append(_mlContext.Transforms.Concatenate("Features", features.ToArray()))
                                  .Append(_mlContext.Transforms.CopyColumns("Label", System.Enum.GetName(typeof(ColumnEnum), column)))
-                                 .Append(_mlContext.Regression.Trainers.FastTreeTweedie());
+                                 .Append(_mlContext.Regression.Trainers.Sdca());
                 return res2.Fit(_trainData);
             }
             var res3 = textTransformer.Append(_mlContext.Transforms.Concatenate("Features", features.ToArray()))
                                  .Append(_mlContext.Transforms.CopyColumns("Label", System.Enum.GetName(typeof(ColumnEnum), column)))
-                                 .Append(_mlContext.Regression.Trainers.FastTreeTweedie());
+                                 .Append(_mlContext.Regression.Trainers.Sdca());
             return res3.Fit(_trainData);
                
         }
