@@ -9,8 +9,8 @@
     ".NETStandard,Version=v2.0/": {
       "CoreProject/1.0.0": {
         "dependencies": {
-          "Microsoft.ML": "1.5.1",
-          "Microsoft.ML.FastTree": "1.5.1",
+          "Microsoft.ML": "1.6.0",
+          "Microsoft.ML.FastTree": "1.6.0",
           "NETStandard.Library": "2.0.3"
         },
         "runtime": {
@@ -43,75 +43,79 @@
           }
         }
       },
-      "Microsoft.ML/1.5.1": {
+      "Microsoft.ML/1.6.0": {
         "dependencies": {
-          "Microsoft.ML.CpuMath": "1.5.1",
-          "Microsoft.ML.DataView": "1.5.1",
+          "Microsoft.ML.CpuMath": "1.6.0",
+          "Microsoft.ML.DataView": "1.6.0",
           "Newtonsoft.Json": "10.0.3",
           "System.CodeDom": "4.4.0",
           "System.Collections.Immutable": "1.5.0",
-          "System.Memory": "4.5.1",
+          "System.Memory": "4.5.3",
           "System.Reflection.Emit.Lightweight": "4.3.0",
           "System.Threading.Channels": "4.7.1"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.Core.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           },
           "lib/netstandard2.0/Microsoft.ML.Data.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           },
           "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           },
           "lib/netstandard2.0/Microsoft.ML.PCA.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           },
           "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           },
           "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
+          },
+          "lib/netstandard2.0/Microsoft.ML.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.600.21.36503"
           }
         }
       },
-      "Microsoft.ML.CpuMath/1.5.1": {
+      "Microsoft.ML.CpuMath/1.6.0": {
         "dependencies": {
-          "System.Memory": "4.5.1"
+          "System.Memory": "4.5.3"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.CpuMath.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           }
         }
       },
-      "Microsoft.ML.DataView/1.5.1": {
+      "Microsoft.ML.DataView/1.6.0": {
         "dependencies": {
           "System.Collections.Immutable": "1.5.0",
-          "System.Memory": "4.5.1"
+          "System.Memory": "4.5.3"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           }
         }
       },
-      "Microsoft.ML.FastTree/1.5.1": {
+      "Microsoft.ML.FastTree/1.6.0": {
         "dependencies": {
-          "Microsoft.ML": "1.5.1"
+          "Microsoft.ML": "1.6.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {
             "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.5.29111.7"
+            "fileVersion": "1.600.21.36503"
           }
         }
       },
@@ -373,7 +377,7 @@
           }
         }
       },
-      "System.Memory/4.5.1": {
+      "System.Memory/4.5.3": {
         "dependencies": {
           "System.Buffers": "4.4.0",
           "System.Numerics.Vectors": "4.4.0",
@@ -381,8 +385,8 @@
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.6.26606.5"
+            "assemblyVersion": "4.0.1.1",
+            "fileVersion": "4.6.27617.2"
           }
         }
       },
@@ -693,33 +697,33 @@
       "path": "microsoft.csharp/4.3.0",
       "hashPath": "microsoft.csharp.4.3.0.nupkg.sha512"
     },
-    "Microsoft.ML/1.5.1": {
+    "Microsoft.ML/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-zeHu87LNooJFPWCA66GFbXXr+CyAxtkElVhzK13p3yjU4knhXQUSD2n/ZorKc0OrS990uGtstJUk0cOKgURb5w==",
-      "path": "microsoft.ml/1.5.1",
-      "hashPath": "microsoft.ml.1.5.1.nupkg.sha512"
+      "sha512": "sha512-zkDI36NE/xX076TRYT4IZ1bdHc5Sr0KVHeUeEANP1R4jOZpztJXTxHVK/izK+Jz1137Xszp5zdyzw7VOd+WsSA==",
+      "path": "microsoft.ml/1.6.0",
+      "hashPath": "microsoft.ml.1.6.0.nupkg.sha512"
     },
-    "Microsoft.ML.CpuMath/1.5.1": {
+    "Microsoft.ML.CpuMath/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-lLwzF5YnOFwKKs0SnhE3VxzaOKQEVuagGEgFB+MI3W1edFtH2ewP5dO9Qm5czv85FIaqOwjcfa7PSHa9OBnJHw==",
-      "path": "microsoft.ml.cpumath/1.5.1",
-      "hashPath": "microsoft.ml.cpumath.1.5.1.nupkg.sha512"
+      "sha512": "sha512-tcDUQ84xG9D8VFgBgXcps/stBoefEK14+deMfftUms8vb9qUmc3A6yTQRZyaggL6Fxybi4LiHLn5DhGs0NvOBw==",
+      "path": "microsoft.ml.cpumath/1.6.0",
+      "hashPath": "microsoft.ml.cpumath.1.6.0.nupkg.sha512"
     },
-    "Microsoft.ML.DataView/1.5.1": {
+    "Microsoft.ML.DataView/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-uYHGFY0tIlexT9ZoSBz12baxilsmzc4MwKhH7XQP10aG5/BSk6AZBsqY2PPTW+ZPKeriBJn0T12kMfgfB58dng==",
-      "path": "microsoft.ml.dataview/1.5.1",
-      "hashPath": "microsoft.ml.dataview.1.5.1.nupkg.sha512"
+      "sha512": "sha512-o32XTTTledXjrX8e14habbzk+WJhj+Zgs1UV1OiTwO+rVUwnT4KSROri4L/5kuWdSxMCcTFb5sE1JnjHb+y1Gg==",
+      "path": "microsoft.ml.dataview/1.6.0",
+      "hashPath": "microsoft.ml.dataview.1.6.0.nupkg.sha512"
     },
-    "Microsoft.ML.FastTree/1.5.1": {
+    "Microsoft.ML.FastTree/1.6.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3rkhXkaDBfwaQtbchJA8as/MULO0/9pj29/P9lJl2hj1WssvggiZLi6TsNZnLgJ0klwHzDdsXaG61aVQ6VTnrQ==",
-      "path": "microsoft.ml.fasttree/1.5.1",
-      "hashPath": "microsoft.ml.fasttree.1.5.1.nupkg.sha512"
+      "sha512": "sha512-QBAsPSU/MlcUEyMlWD4tZr80evXsLlffqp+P9YUWWxSuEmOXjXFQl77gnOtQh9C8XJSj5EEkztV320+ESsvcCg==",
+      "path": "microsoft.ml.fasttree/1.6.0",
+      "hashPath": "microsoft.ml.fasttree.1.6.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -875,12 +879,12 @@
       "path": "system.linq.expressions/4.3.0",
       "hashPath": "system.linq.expressions.4.3.0.nupkg.sha512"
     },
-    "System.Memory/4.5.1": {
+    "System.Memory/4.5.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-sDJYJpGtTgx+23Ayu5euxG5mAXWdkDb4+b0rD0Cab0M1oQS9H0HXGPriKcqpXuiJDTV7fTp/d+fMDJmnr6sNvA==",
-      "path": "system.memory/4.5.1",
-      "hashPath": "system.memory.4.5.1.nupkg.sha512"
+      "sha512": "sha512-3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
+      "path": "system.memory/4.5.3",
+      "hashPath": "system.memory.4.5.3.nupkg.sha512"
     },
     "System.Numerics.Vectors/4.4.0": {
       "type": "package",

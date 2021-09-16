@@ -29,15 +29,15 @@
           "lib/netstandard1.3/Microsoft.CSharp.dll": {}
         }
       },
-      "Microsoft.ML/1.5.1": {
+      "Microsoft.ML/1.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.ML.CpuMath": "1.5.1",
-          "Microsoft.ML.DataView": "1.5.1",
+          "Microsoft.ML.CpuMath": "1.6.0",
+          "Microsoft.ML.DataView": "1.6.0",
           "Newtonsoft.Json": "10.0.3",
           "System.CodeDom": "4.4.0",
           "System.Collections.Immutable": "1.5.0",
-          "System.Memory": "4.5.1",
+          "System.Memory": "4.5.3",
           "System.Reflection.Emit.Lightweight": "4.3.0",
           "System.Threading.Channels": "4.7.1"
         },
@@ -47,7 +47,8 @@
           "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {},
           "lib/netstandard2.0/Microsoft.ML.PCA.dll": {},
           "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {}
+          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {},
+          "lib/netstandard2.0/Microsoft.ML.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.ML.Core.dll": {},
@@ -55,16 +56,29 @@
           "lib/netstandard2.0/Microsoft.ML.KMeansClustering.dll": {},
           "lib/netstandard2.0/Microsoft.ML.PCA.dll": {},
           "lib/netstandard2.0/Microsoft.ML.StandardTrainers.dll": {},
-          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {}
+          "lib/netstandard2.0/Microsoft.ML.Transforms.dll": {},
+          "lib/netstandard2.0/Microsoft.ML.dll": {}
         },
         "build": {
           "build/netstandard2.0/Microsoft.ML.props": {},
           "build/netstandard2.0/Microsoft.ML.targets": {}
         },
         "runtimeTargets": {
+          "runtimes/linux-arm/native/libLdaNative.so": {
+            "assetType": "native",
+            "rid": "linux-arm"
+          },
+          "runtimes/linux-arm64/native/libLdaNative.so": {
+            "assetType": "native",
+            "rid": "linux-arm64"
+          },
           "runtimes/linux-x64/native/libLdaNative.so": {
             "assetType": "native",
             "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libLdaNative.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
           },
           "runtimes/osx-x64/native/libLdaNative.dylib": {
             "assetType": "native",
@@ -80,10 +94,10 @@
           }
         }
       },
-      "Microsoft.ML.CpuMath/1.5.1": {
+      "Microsoft.ML.CpuMath/1.6.0": {
         "type": "package",
         "dependencies": {
-          "System.Memory": "4.5.1"
+          "System.Memory": "4.5.3"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.ML.CpuMath.dll": {}
@@ -113,11 +127,11 @@
           }
         }
       },
-      "Microsoft.ML.DataView/1.5.1": {
+      "Microsoft.ML.DataView/1.6.0": {
         "type": "package",
         "dependencies": {
           "System.Collections.Immutable": "1.5.0",
-          "System.Memory": "4.5.1"
+          "System.Memory": "4.5.3"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
@@ -126,10 +140,10 @@
           "lib/netstandard2.0/Microsoft.ML.DataView.dll": {}
         }
       },
-      "Microsoft.ML.FastTree/1.5.1": {
+      "Microsoft.ML.FastTree/1.6.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.ML": "1.5.1"
+          "Microsoft.ML": "1.6.0"
         },
         "compile": {
           "lib/netstandard2.0/Microsoft.ML.FastTree.dll": {}
@@ -212,7 +226,7 @@
       "System.Buffers/4.4.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Buffers.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Buffers.dll": {}
@@ -490,15 +504,15 @@
           "lib/netstandard1.6/System.Linq.Expressions.dll": {}
         }
       },
-      "System.Memory/4.5.1": {
+      "System.Memory/4.5.3": {
         "type": "package",
         "dependencies": {
           "System.Buffers": "4.4.0",
           "System.Numerics.Vectors": "4.4.0",
-          "System.Runtime.CompilerServices.Unsafe": "4.5.0"
+          "System.Runtime.CompilerServices.Unsafe": "4.5.2"
         },
         "compile": {
-          "ref/netstandard2.0/System.Memory.dll": {}
+          "lib/netstandard2.0/System.Memory.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Memory.dll": {}
@@ -507,7 +521,7 @@
       "System.Numerics.Vectors/4.4.0": {
         "type": "package",
         "compile": {
-          "ref/netstandard2.0/_._": {}
+          "ref/netstandard2.0/System.Numerics.Vectors.dll": {}
         },
         "runtime": {
           "lib/netstandard2.0/System.Numerics.Vectors.dll": {}
@@ -916,10 +930,10 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Microsoft.ML/1.5.1": {
-      "sha512": "zeHu87LNooJFPWCA66GFbXXr+CyAxtkElVhzK13p3yjU4knhXQUSD2n/ZorKc0OrS990uGtstJUk0cOKgURb5w==",
+    "Microsoft.ML/1.6.0": {
+      "sha512": "zkDI36NE/xX076TRYT4IZ1bdHc5Sr0KVHeUeEANP1R4jOZpztJXTxHVK/izK+Jz1137Xszp5zdyzw7VOd+WsSA==",
       "type": "package",
-      "path": "microsoft.ml/1.5.1",
+      "path": "microsoft.ml/1.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -939,19 +953,24 @@
         "lib/netstandard2.0/Microsoft.ML.StandardTrainers.xml",
         "lib/netstandard2.0/Microsoft.ML.Transforms.dll",
         "lib/netstandard2.0/Microsoft.ML.Transforms.xml",
-        "microsoft.ml.1.5.1.nupkg.sha512",
+        "lib/netstandard2.0/Microsoft.ML.dll",
+        "lib/netstandard2.0/Microsoft.ML.xml",
+        "microsoft.ml.1.6.0.nupkg.sha512",
         "microsoft.ml.nuspec",
         "mlnetlogo.png",
+        "runtimes/linux-arm/native/libLdaNative.so",
+        "runtimes/linux-arm64/native/libLdaNative.so",
         "runtimes/linux-x64/native/libLdaNative.so",
+        "runtimes/osx-arm64/native/libLdaNative.dylib",
         "runtimes/osx-x64/native/libLdaNative.dylib",
         "runtimes/win-x64/native/LdaNative.dll",
         "runtimes/win-x86/native/LdaNative.dll"
       ]
     },
-    "Microsoft.ML.CpuMath/1.5.1": {
-      "sha512": "lLwzF5YnOFwKKs0SnhE3VxzaOKQEVuagGEgFB+MI3W1edFtH2ewP5dO9Qm5czv85FIaqOwjcfa7PSHa9OBnJHw==",
+    "Microsoft.ML.CpuMath/1.6.0": {
+      "sha512": "tcDUQ84xG9D8VFgBgXcps/stBoefEK14+deMfftUms8vb9qUmc3A6yTQRZyaggL6Fxybi4LiHLn5DhGs0NvOBw==",
       "type": "package",
-      "path": "microsoft.ml.cpumath/1.5.1",
+      "path": "microsoft.ml.cpumath/1.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -962,11 +981,14 @@
         "lib/netcoreapp3.1/Microsoft.ML.CpuMath.xml",
         "lib/netstandard2.0/Microsoft.ML.CpuMath.dll",
         "lib/netstandard2.0/Microsoft.ML.CpuMath.xml",
-        "microsoft.ml.cpumath.1.5.1.nupkg.sha512",
+        "microsoft.ml.cpumath.1.6.0.nupkg.sha512",
         "microsoft.ml.cpumath.nuspec",
         "mlnetlogo.png",
+        "runtimes/linux-arm/nativeassets/netcoreapp3.1/_._",
+        "runtimes/linux-arm64/nativeassets/netcoreapp3.1/_._",
         "runtimes/linux-x64/nativeassets/netcoreapp3.1/_._",
         "runtimes/linux-x64/nativeassets/netstandard2.0/libCpuMathNative.so",
+        "runtimes/osx-arm64/nativeassets/netcoreapp3.1/_._",
         "runtimes/osx-x64/nativeassets/netcoreapp3.1/_._",
         "runtimes/osx-x64/nativeassets/netstandard2.0/libCpuMathNative.dylib",
         "runtimes/win-x64/nativeassets/netcoreapp3.1/_._",
@@ -975,10 +997,10 @@
         "runtimes/win-x86/nativeassets/netstandard2.0/CpuMathNative.dll"
       ]
     },
-    "Microsoft.ML.DataView/1.5.1": {
-      "sha512": "uYHGFY0tIlexT9ZoSBz12baxilsmzc4MwKhH7XQP10aG5/BSk6AZBsqY2PPTW+ZPKeriBJn0T12kMfgfB58dng==",
+    "Microsoft.ML.DataView/1.6.0": {
+      "sha512": "o32XTTTledXjrX8e14habbzk+WJhj+Zgs1UV1OiTwO+rVUwnT4KSROri4L/5kuWdSxMCcTFb5sE1JnjHb+y1Gg==",
       "type": "package",
-      "path": "microsoft.ml.dataview/1.5.1",
+      "path": "microsoft.ml.dataview/1.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -986,15 +1008,15 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netstandard2.0/Microsoft.ML.DataView.dll",
         "lib/netstandard2.0/Microsoft.ML.DataView.xml",
-        "microsoft.ml.dataview.1.5.1.nupkg.sha512",
+        "microsoft.ml.dataview.1.6.0.nupkg.sha512",
         "microsoft.ml.dataview.nuspec",
         "mlnetlogo.png"
       ]
     },
-    "Microsoft.ML.FastTree/1.5.1": {
-      "sha512": "3rkhXkaDBfwaQtbchJA8as/MULO0/9pj29/P9lJl2hj1WssvggiZLi6TsNZnLgJ0klwHzDdsXaG61aVQ6VTnrQ==",
+    "Microsoft.ML.FastTree/1.6.0": {
+      "sha512": "QBAsPSU/MlcUEyMlWD4tZr80evXsLlffqp+P9YUWWxSuEmOXjXFQl77gnOtQh9C8XJSj5EEkztV320+ESsvcCg==",
       "type": "package",
-      "path": "microsoft.ml.fasttree/1.5.1",
+      "path": "microsoft.ml.fasttree/1.6.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1003,7 +1025,7 @@
         "build/netstandard2.0/Microsoft.ML.FastTree.props",
         "lib/netstandard2.0/Microsoft.ML.FastTree.dll",
         "lib/netstandard2.0/Microsoft.ML.FastTree.xml",
-        "microsoft.ml.fasttree.1.5.1.nupkg.sha512",
+        "microsoft.ml.fasttree.1.6.0.nupkg.sha512",
         "microsoft.ml.fasttree.nuspec",
         "mlnetlogo.png",
         "runtimes/linux-x64/native/libFastTreeNative.so",
@@ -2122,10 +2144,10 @@
         "system.linq.expressions.nuspec"
       ]
     },
-    "System.Memory/4.5.1": {
-      "sha512": "sDJYJpGtTgx+23Ayu5euxG5mAXWdkDb4+b0rD0Cab0M1oQS9H0HXGPriKcqpXuiJDTV7fTp/d+fMDJmnr6sNvA==",
+    "System.Memory/4.5.3": {
+      "sha512": "3oDzvc/zzetpTKWMShs1AADwZjQ/36HnsufHRPcOjyRAAMLDlu2iD33MBI2opxnezcVUtXyqDXXjoFMOU9c7SA==",
       "type": "package",
-      "path": "system.memory/4.5.1",
+      "path": "system.memory/4.5.3",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2137,11 +2159,7 @@
         "lib/netstandard2.0/System.Memory.dll",
         "lib/netstandard2.0/System.Memory.xml",
         "ref/netcoreapp2.1/_._",
-        "ref/netstandard1.1/System.Memory.dll",
-        "ref/netstandard1.1/System.Memory.xml",
-        "ref/netstandard2.0/System.Memory.dll",
-        "ref/netstandard2.0/System.Memory.xml",
-        "system.memory.4.5.1.nupkg.sha512",
+        "system.memory.4.5.3.nupkg.sha512",
         "system.memory.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
@@ -3657,8 +3675,8 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "Microsoft.ML >= 1.5.1",
-      "Microsoft.ML.FastTree >= 1.5.1",
+      "Microsoft.ML >= 1.6.0",
+      "Microsoft.ML.FastTree >= 1.6.0",
       "NETStandard.Library >= 2.0.3"
     ]
   },
@@ -3711,11 +3729,11 @@
         "dependencies": {
           "Microsoft.ML": {
             "target": "Package",
-            "version": "[1.5.1, )"
+            "version": "[1.6.0, )"
           },
           "Microsoft.ML.FastTree": {
             "target": "Package",
-            "version": "[1.5.1, )"
+            "version": "[1.6.0, )"
           },
           "NETStandard.Library": {
             "suppressParent": "All",
@@ -3734,7 +3752,7 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -16,5 +16,5 @@ C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.Asse
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.dll
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.pdb
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csproj.CoreCompileInputs.cache
-C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csproj.AssemblyReference.cache
 C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Millionaire\Millionaire\CoreProject\obj\Debug\netstandard2.0\CoreProject.csproj.AssemblyReference.cache
